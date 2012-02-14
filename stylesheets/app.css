@@ -1,0 +1,56 @@
+/*
+ * This file is part of Duit.
+
+   Duit is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Duit is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Duit.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+@font-face { font-family: Journal; src: url('../fonts/journal.ttf'); }
+@font-face { font-family: Josefin; src: url('../fonts/josefin.otf'); }
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+.title {
+	font-family: Journal;
+	font-size: 82pt;
+	margin-top: 30px;
+	margin-bottom: 0px;
+	/*text-align:center;*/
+}
+.subtitle {
+	font-family: Journal;
+	font-size: 32pt;
+	margin-bottom: 30px;
+	margin-left: 75%;
+}
+.subtitlecontent {
+	font-family: Journal;
+	font-size: 46pt;
+	margin-bottom: 30px;
+	
+}
+.footer {
+	margin-top: 5%;
+	margin-bottom: 1%;
+}
+.spaces {
+	margin-right: 2%;
+}
+#pomodoro h1 {
+	font-size: 80pt;
+	text-align: center;
+	color: #555;
+	font-family: 'Josefin';
+}
+
+
