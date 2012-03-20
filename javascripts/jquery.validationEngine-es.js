@@ -137,6 +137,15 @@
 	                    "alertTextLoad": "* Validando...",
 	                    "alertTextOk": "* Email disponible."
 	                },
+	                "ajaxRecoverEmailCallPhp": {
+	                    // remote json service location
+	                    "url": "lib/ajaxRecoverEmail.php",
+	                    // error
+	                    "alertText": "* El email no está en nuestra base de datos.",
+	                    // speaks by itself
+	                    "alertTextLoad": "* Validando...",
+	                    "alertTextOk": "* Email registrado en nuestra base de datos."
+	                },
                 "validate2fields": {
                     "alertText": "* Por favor entrar HELLO"
                 }

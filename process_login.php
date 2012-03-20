@@ -96,7 +96,7 @@ if (!isset($error)) {
 						<form>
 							<div class='form-field error'>
 								<small>Whoaa! Se ha producido un error:<br><br> <?php echo $errorbd; ?> </small>
-								<a href="recoverpass.php">¿Has olvidado tu contraseña?</a>
+								<a href="recover.php">¿Has olvidado tu contraseña?</a>
 							</div>
 						</form>
 				</div>
