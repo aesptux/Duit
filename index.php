@@ -28,7 +28,7 @@ getRandomQuote();
 			<a href="logout.php">Salir</a>
 			<!-- greetings part. get a random greeting. Function call is on top-->
 			<h5>¡<?php echo "<span title='Duit te saluda en $ql[1]'> $ql[0] "; echo $_SESSION['user']; ?> !</h5>				
-				<h4>Notebooks2</h4>
+				<h4>Notebooks</h4>
 				<p>We're stoked you want to try Foundation! To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
 
 				<h4>Other Resources</h4>
