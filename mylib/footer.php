@@ -22,14 +22,14 @@
 ?>
 <div class="row footer">
 				<div id="faq" class="reveal-modal">
-			    	<h2>FAQ</h2>
-			     	<p class="lead">Preguntas Frecuentes</p>
-			     	<p>Contenido...</p>
+			    	<h2>Preguntas frecuentes</h2>
+			     	<p class="lead">¿Duit tiene algún límite?</p>
+			     	<p>No, de momento Duit no tiene establecido ningún límite.</p>
 			     	<a class="close-reveal-modal">&#215;</a>
 				</div>
 				<div id="acerca" class="reveal-modal">
 			    	<h2>Acerca de</h2>
-			     	<p class="lead">Más información sobre Duit</p>
+			     	<p class="subtitlecontent">Más información sobre Duit</p>
 			     	<p>Duit es un sitio web destinado a servir como GTD.
 			     		Actualmente, se encuentra en fase beta.</p>
 			     	<p>Nació como un proyecto de 2º de Ciclo Formativo de Grado Superior de
@@ -48,9 +48,16 @@
 					</form>
 
 			     	<a class="close-reveal-modal">&#215;</a>
-				</div>		
+				</div>	
+				
+				<div id="contacto" class="reveal-modal">
+			    	<h2>Contacto</h2>
+			     	<p>Para contactar con el desarrollador:</p>
+			     	<a class="close-reveal-modal">&#215;</a>
+				</div>	
 				 <a href="#" class="spaces" data-reveal-id="faq" data-animation="fadeAndPop" data-animationspeed="300" data-closeonbackgroundclick="true" data-dismissmodalclass="close-reveal-modal">FAQ</a>
 				 <a href="#" class="spaces" data-reveal-id="acerca" data-animation="fadeAndPop" data-animationspeed="300" data-closeonbackgroundclick="true" data-dismissmodalclass="close-reveal-modal">Acerca de</a>
+				 <a href="#" class="spaces" data-reveal-id="contacto" data-animation="fadeAndPop" data-animationspeed="300" data-closeonbackgroundclick="true" data-dismissmodalclass="close-reveal-modal">Contacto</a>
 			</div>
 					
 					

@@ -126,7 +126,8 @@ if (!isset($error)) {
 						</div>
 					</div>
 <?php
-				
+				//sleep(10);
+					Header ("Location: index.php");
 				}
 		
 

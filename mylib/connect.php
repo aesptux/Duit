@@ -20,7 +20,7 @@
 define('DBUSER', 'root'); // database user
 define('DBNAME', 'duitdb'); // database name
 define('DBSERVER', 'localhost'); // database server
-define('DBPASS', 'etg11123'); // database password
+define('DBPASS', '123456789a'); // database password
 	
 class Cn {
 	/* If there is die, there is no exception */

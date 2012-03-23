@@ -45,7 +45,7 @@ function getHeader($title) {
 		$errorContent = $error;
 		mysql_query("INSERT INTO errorlog (dateError, contentError, archivo) VALUES ('$fecha','$errorContent', '$file')")
 		or die ("Error al insertar una linea en el log");
-		Header ("Location: /duit/error.html");
+		Header ("Location: error.html");
 		}
 		
 	
