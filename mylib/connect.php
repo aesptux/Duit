@@ -23,7 +23,7 @@ define('DBSERVER', ''); // database server
 define('DBPASS', ''); // database password
 	
 class Cn {
-	
+	/* If there is die, there is no exception */
 	private $link; // this is the usual link.
 	/* CONNECT */
 	function conn() {
@@ -32,7 +32,7 @@ class Cn {
 	
 	/* SELECT DB */
 	function selectdb() {
-		mysql_select_db(DBNAME) or die ("Error al seleccionar la base de datos ". mysql_error());
+		mysql_select_db(DBNAME);
 	}
 	
 	/* QUERY */

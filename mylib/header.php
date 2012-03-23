@@ -21,7 +21,14 @@ function getHeader($title) {
 	
 	include 'mylib/connect.php';
 	Cn::conn();
-	Cn::selectdb();
+	try {
+		Cn::selectdb();
+		throw new Exception("Error al seleccionar la base de datos");
+	}
+	catch( Exception $e ) {
+		echo "Excepcion capturada -> ". $e->getMessage();
+	}
+//	Cn::selectdb();
 	/*$myuser = 'aesptux1';
 	$result = Cn::q("SELECT username FROM User WHERE username = '$myuser'");
 	while ($row = Cn::f($result, MYSQL_ASSOC)) {
