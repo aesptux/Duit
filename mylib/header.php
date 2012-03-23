@@ -35,7 +35,7 @@ function getHeader($title) {
 		} 
 	}catch( Exception $e ) {
 		/* if it fails, we want to record the error to another database*/
-		mysql_connect('localhost','root','etg1112') or die ("Error al conectar con el log de errores -> ". mysql_error());
+		mysql_connect('localhost','root','123456789a') or die ("Error al conectar con el log de errores -> ". mysql_error());
 		mysql_select_db('duiterrors') or die ("Error al seleccionar el log de errores -> ". mysql_error());
 		$fecha = date("Y-m-d H:i:s");
 		$file = __FILE__;
