@@ -1,7 +1,7 @@
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
 <?php
 /*
- * Created on ${date}.
+ * 
  * Author: Adrián Espinosa
  * This file is part of Duit.
  *

@@ -1,5 +1,5 @@
 /*
- * Created on ${date}.
+ * 
  * Author: Adrián Espinosa
  * This file is part of Duit.
  *
