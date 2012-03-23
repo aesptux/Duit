@@ -1,4 +1,5 @@
 <?php
+
 /*
  * 
  * Author: Adrián Espinosa
@@ -20,14 +21,35 @@
 function getHeader($title) {
 	
 	include 'mylib/connect.php';
-	Cn::conn();
+	
 	try {
-		Cn::selectdb();
-		throw new Exception("Error al seleccionar la base de datos");
-	}
-	catch( Exception $e ) {
-		echo "Excepcion capturada -> ". $e->getMessage();
-	}
+		$c = Cn::conn();
+		//echo $c;
+		$s = Cn::selectdb();
+		//echo $s;
+		if (!$c){
+		 throw new Exception("Error en la conexion con la BD ---".mysql_error());
+		} 
+		if (!$s){
+		 throw new Exception("Error seleccionar la base de datos ---".mysql_error());
+		} 
+	}catch( Exception $e ) {
+		/* if it fails, we want to record the error to another database*/
+		mysql_connect('localhost','root','etg1112') or die ("Error al conectar con el log de errores -> ". mysql_error());
+		mysql_select_db('duiterrors') or die ("Error al seleccionar el log de errores -> ". mysql_error());
+		$fecha = date("Y-m-d H:i:s");
+		$file = __FILE__;
+		/*we have to clean the string to insert it*/
+		$error = Cn::clean($e->getMessage());
+		echo $error;
+		$errorContent = $error;
+		mysql_query("INSERT INTO errorlog (dateError, contentError, archivo) VALUES ('$fecha','$errorContent', '$file')")
+		or die ("Error al insertar una linea en el log");
+		Header ("Location: /duit/error.html");
+		}
+		
+	
+
 //	Cn::selectdb();
 	/*$myuser = 'aesptux1';
 	$result = Cn::q("SELECT username FROM User WHERE username = '$myuser'");
