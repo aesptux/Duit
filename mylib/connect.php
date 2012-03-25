@@ -24,10 +24,11 @@ define('DBPASS', '123456789a'); // database password
 	
 class Cn {
 	/* If there is die, there is no exception */
-	private $link; // this is the usual link.
+	public $link; // this is the usual link.
 	/* CONNECT */
 	function conn() {
-		if (!mysql_connect(DBSERVER,DBUSER,DBPASS)) {
+		$link = mysql_connect(DBSERVER,DBUSER,DBPASS);
+		if (!$link) {
 			return false;
 		} else {
 			return true;

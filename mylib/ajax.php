@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on Mar 23, 2012.
+ * Created on Mar 25, 2012.
  * Author: Adrián Espinosa
  * This file is part of Duit.
  *
@@ -17,12 +17,38 @@
  * You should have received a copy of the GNU General Public License
  * along with Duit.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
- 
- 
- 
- 
- 
- 
- 
+ require "connect.php";
+ require "gtd.php";
+ Cn::conn();
+ Cn::selectdb();
+$id = (int)$_GET['id'];
+
+try{
+
+	switch($_GET['action'])
+	{
+		case 'delete':
+			ToDo::delete($id);
+			break;
+			
+		case 'rearrange':
+			ToDo::rearrange($_GET['positions']);
+			break;
+			
+		case 'edit':
+			ToDo::edit($id,$_GET['text']);
+			break;
+			
+		case 'new':
+			ToDo::createNew($_GET['text']);
+			break;
+	}
+
+}
+catch(Exception $e){
+	echo $e->getMessage();
+	die("0");
+}
+
+echo "1";
 ?>

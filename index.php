@@ -20,6 +20,7 @@
 include 'mylib/footer.php';
 include 'mylib/header.php';
 include 'mylib/quotes.php';
+require 'mylib/gtd.php';
 /*in order to use both values, we use list() */
 //list ($gr, $language) = getRandomGreeting();
 //list ($qu, $author) = getRandomQuote();
@@ -29,17 +30,32 @@ include 'mylib/quotes.php';
 getHeader("Duit");
 getRandomGreeting();
 getRandomQuote();
+$idUser = $_SESSION['idUser'];
 
-
+//mysql_select_db('duitdb',$link);
 ?>
-	<script>
 
-</script>
 
 	<!-- container -->
 	<div class="container">
 		
-		<?php  if(isset($_SESSION['email'])){ ?>
+		<?php  if(isset($_SESSION['email'])){
+			 
+$query = mysql_query("SELECT *
+FROM Task
+INNER JOIN Notebook ON Task.idNotebook = Notebook.idNotebook
+INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
+WHERE Workspace.idUser = 10");
+
+$tasks = array();
+
+// Filling the $tasks array with new ToDo objects:
+
+while($row = mysql_fetch_assoc($query)){
+	$todos[] = new ToDo($row);
+}
+			?>
+			
 			<!-- first part. user logged in -->
 		<div class="row">
 			<div class="three columns">
@@ -67,16 +83,34 @@ getRandomQuote();
 							<dd><a href="#simple1" class="active">Tareas</a></dd>
 							<dd><a href="#simple2">Pomodoro</a></dd>
 						</dl>
-
+						<div class="main">
 						<ul class="tabs-content">
 							<li class="active" id="simple1Tab">
-								<div class="panel">
-									<p>Tarea 1. Reducir panel</p>
-								</div>
-								<div class="panel">
-									<p>Tarea 2. Que bonito</p>
-								</div>
+							
+							<div id="main">
+
+	<ul class="todoList">
+		<a id="addButton" class="radius blue button" href="#">Añadir tarea</a>
+        <?php
+		
+		// Looping and outputting the $todos array. The __toString() method
+		// is used internally to convert the objects to strings:
+		
+		foreach($todos as $item){
+			echo $item;
+		}
+		
+		?>
+
+    </ul>
+
+
+
+</div>
 							</li>
+							
+							
+							
 							<li id="simple2Tab">
 
 							<div id="pomodoro">
@@ -87,7 +121,7 @@ getRandomQuote();
 							</li>
 							
 						</ul>
-						
+						</div>
 					</div>
 				</div>
 				
@@ -178,7 +212,7 @@ getRandomQuote();
 					<p>No dudes más, regístrate y empieza a ahorrar tiempo y aumentar tu productividad.</p>
 					<a href="register.php" class="nice large radius white button" name="registrar"/>Registrarse</a>
 				</div>
-				
+			<script src="myjs/gtd.js"></script>	
 		</div>
 		
 		

@@ -60,7 +60,7 @@ if (!isset($error)) {
 
 
 	
-	$result = Cn::q("SELECT username,email,password FROM User WHERE email='$email'", MYSQL_ASSOC);
+	$result = Cn::q("SELECT idUser,username,email,password FROM User WHERE email='$email'", MYSQL_ASSOC);
 	$validate = Cn::f($result);
 	
 
@@ -109,6 +109,7 @@ if (!isset($error)) {
 
 					$_SESSION['user'] = $validate['username'];
 					$_SESSION['email'] = $validate['email'];
+					$_SESSION['idUser'] = $validate['idUser'];
 					
 					/* and update dateLastAccess field */
 					$user = $validate['username'];

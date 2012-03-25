@@ -103,6 +103,9 @@ function getHeader($title) {
 	<script src="javascripts/jquery.validationEngine.js"></script>
 	<script src="javascripts/jquery.validationEngine-es.js"></script>
 	<script src="myjs/pomodoro.js"></script>
+	<script src="myjs/gtd.js"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 
 </head>
 <body>
