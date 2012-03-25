@@ -41,14 +41,14 @@ class ToDo{
 		// The string we return is outputted by the echo statement
 		
 		return '
-			<div class="panel"><li id="todo-'.$this->data['idTask'].'" class="todo">
+			<li id="todo-'.$this->data['idTask'].'" class="todo">
 			
-				<div class="text"><p>'.$this->data['content'].'</p></div>
-				
-				<div class="actions">
+				<div class="text"><div class="panel"><p>'.$this->data['content'].'</p><div class="actions">
 					<a href="#" class="edit">Edit</a>
 					<a href="#" class="delete">Delete</a>
-				</div>
+				</div></div>
+				
+				
 				</div>
 			</li>';
 	}
@@ -67,7 +67,7 @@ class ToDo{
 	*/
 		
 	public static function edit($id, $text){
-		
+		session_start();
 		$text = self::esc($text);
 		if(!$text) throw new Exception("Wrong update text!");
 		
@@ -86,7 +86,7 @@ class ToDo{
 	*/
 	
 	public static function delete($id){
-		
+		session_start();
 		mysql_query("DELETE FROM Task WHERE idTask=".$id);
 		
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
@@ -127,7 +127,7 @@ class ToDo{
 	*/
 	
 	public static function createNew($text){
-
+		session_start();
 		$text = self::esc($text);
 		/*if(!$text) throw new Exception("Wrong input data!");
 		
@@ -137,8 +137,9 @@ class ToDo{
 			list($position) = mysql_fetch_array($posResult);
 
 		if(!$position) $position = 1;*/
-
-		mysql_query("INSERT INTO Task(idNotebook, content,author) VALUES (1, '$text', 'adrian')");
+		$fecha=date("Y-m-d H:i:s");
+		$author = $_SESSION['user'];
+		mysql_query("INSERT INTO Task(idNotebook, content,author, createdDate) VALUES (3, '$text', '$author','$fecha')");
 
 		/*if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Error inserting TODO!".mysql_error());*/

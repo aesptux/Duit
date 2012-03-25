@@ -24,7 +24,7 @@ require 'mylib/gtd.php';
 /*in order to use both values, we use list() */
 //list ($gr, $language) = getRandomGreeting();
 //list ($qu, $author) = getRandomQuote();
-/* well, it seems that my php doesn't like list(), I can't get it working, don't know where is the error.
+/* well, it seems that php doesn't like list(), I can't get it working, don't know where is the error.
  * So I've decided to make a global variable.
  */
 getHeader("Duit");
@@ -32,7 +32,7 @@ getRandomGreeting();
 getRandomQuote();
 $idUser = $_SESSION['idUser'];
 
-//mysql_select_db('duitdb',$link);
+
 ?>
 
 
@@ -45,7 +45,7 @@ $query = mysql_query("SELECT *
 FROM Task
 INNER JOIN Notebook ON Task.idNotebook = Notebook.idNotebook
 INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
-WHERE Workspace.idUser = 10");
+WHERE Workspace.idUser =".$idUser);
 
 $tasks = array();
 
@@ -64,7 +64,17 @@ while($row = mysql_fetch_assoc($query)){
 			<h5>¡<?php echo "<span title='Duit te saluda en $ql[1]'> $ql[0] "; echo $_SESSION['user']; ?> !</h5>				
 				<h4>Notebooks</h4>
 				<p>Listado de notebooks aqui</p>
+			<?php
+			
+			$allnotebooks = Cn::q("SELECT Notebook.name
+					FROM Notebook
+					INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
+					WHERE Workspace.idUser =".$idUser);
+			while ($row = Cn::f($allnotebooks)) {
+				echo $row['name']."<br>";
+			}
 
+			?>
 				
 			</div>
 			<div class="nine columns">
@@ -108,7 +118,6 @@ while($row = mysql_fetch_assoc($query)){
 
 </div>
 							</li>
-							
 							
 							
 							<li id="simple2Tab">
