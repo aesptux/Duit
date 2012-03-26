@@ -18,9 +18,10 @@
  * along with Duit.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* Defining the Gtd class */
+/* Defining the ToDo class */
 
 class ToDo{
+	
 	
 	/* An array that stores the todo item data: */
 	
@@ -43,13 +44,13 @@ class ToDo{
 		return '
 			<li id="todo-'.$this->data['idTask'].'" class="todo">
 			
-				<div class="text"><div class="panel"><p>'.$this->data['content'].'</p><div class="actions">
+				<div class="text">'.$this->data['content'].'</div>
+				
+				<div class="actions">
 					<a href="#" class="edit">Edit</a>
 					<a href="#" class="delete">Delete</a>
-				</div></div>
-				
-				
 				</div>
+				
 			</li>';
 	}
 	
@@ -129,9 +130,9 @@ class ToDo{
 	public static function createNew($text){
 		session_start();
 		$text = self::esc($text);
-		/*if(!$text) throw new Exception("Wrong input data!");
+		if(!$text) throw new Exception("Wrong input data!");
 		
-		$posResult = mysql_query("SELECT MAX(position)+1 FROM tz_todo");
+		/*$posResult = mysql_query("SELECT MAX(position)+1 FROM tz_todo");
 		
 		if(mysql_num_rows($posResult))
 			list($position) = mysql_fetch_array($posResult);
@@ -139,16 +140,27 @@ class ToDo{
 		if(!$position) $position = 1;*/
 		$fecha=date("Y-m-d H:i:s");
 		$author = $_SESSION['user'];
-		mysql_query("INSERT INTO Task(idNotebook, content,author, createdDate) VALUES (3, '$text', '$author','$fecha')");
-
+		$idUser = $_SESSION['idUser'];
+		$query = mysql_query("SELECT Notebook.idNotebook as idNotebook
+			FROM Notebook
+			INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
+			WHERE Workspace.idUser = ".$idUser." LIMIT 1");
+		while ($result = mysql_fetch_assoc($query)) {
+			$idNotebook = $result['idNotebook'];
+		}
+		mysql_query("INSERT INTO Task(idNotebook, content,author, createdDate) VALUES ($idNotebook, '$text', '$author','$fecha')");
+		echo $text; echo mysql_insert_id($GLOBALS['link']);
 		/*if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Error inserting TODO!".mysql_error());*/
 		
 		// Creating a new ToDo and outputting it directly:
-		
+		$query = mysql_query("SELECT MAX(idTask) as idTask FROM Task");
+		while ($result = mysql_fetch_assoc($query)) {
+			$lastid = $result['idTask'];
+		}
 		echo (new ToDo(array(
-			'id'	=> mysql_insert_id($GLOBALS['link']),
-			'text'	=> $text
+			'idTask'	=> $lastid,
+			'content'	=> $text
 		)));
 		
 		exit;

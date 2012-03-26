@@ -68,6 +68,14 @@ $(document).ready(function(){
 		
 		e.preventDefault();
 	});
+
+	// Listening for a click on a delete button:
+
+	$('.todo a.delete').live('click',function(){
+		$.get("mylib/ajax.php",{"action":"delete","id":currentTODO.data('id')},function(msg){
+					currentTODO.fadeOut('fast');
+				})
+	});
 //  Listening for key press while editing tasks:
 
 	$('.todo').live('keypress',function(event){
@@ -78,20 +86,13 @@ $(document).ready(function(){
 	if (event.keyCode == '27') 	//  Listening for a ESC key press to cancel edit:
 		$(this).find('a.discardChanges').click();
 	});
-	// Listening for a click on a delete button:
-
-	$('.todo a.delete').live('click',function(){
-		$.get("mylib/ajax.php",{"action":"delete","id":currentTODO.data('id')},function(msg){
-			currentTODO.fadeOut('fast');
-		})
-	});
 	
 	// Listening for a click on a edit button
 	
 	$('.todo a.edit').live('click',function(){
-		
-		var container = currentTODO.find('.text');
 
+		var container = currentTODO.find('.text');
+		
 		if(!currentTODO.data('origText'))
 		{
 			// Saving the current value of the ToDo so we can
@@ -144,7 +145,7 @@ $(document).ready(function(){
 	$('#addButton').click(function(e){
 
 		// Only one todo per 5 seconds is allowed:
-		if((new Date()).getTime() - timestamp<1000) return false;
+		if((new Date()).getTime() - timestamp<5000) return false;
 		
 		$.get("mylib/ajax.php",{'action':'new','text':'New Todo Item. Doubleclick to Edit.','rand':Math.random()},function(msg){
 
