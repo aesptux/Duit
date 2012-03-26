@@ -89,12 +89,55 @@ if (!isset($error)) {
 		$country = getGeo();
 		$insert = Cn::q("INSERT INTO User (email, username, password, ipRegister, ipLastAccess, geoRegister, geoNow, signupDate)
 						VALUES ('$email', '$username', '$sha1pass', '$ipuser', '$ipuser', '$country', '$country', CURDATE())");
+		/*once the user exists, we may create the default workspace and notebook */
+		$query = Cn::q("SELECT MAX(idUser) as idUser FROM User");
+		while ($result = Cn::f($query)) {
+			$idUser = $result['idUser'];
+		}
+		//echo "idUser->".$idUser;
+		
+		//echo "<br>idWorkspace->".$idWorkspace;
+		//exit();
+		try {
+			
+			$defaultw = Cn::q("INSERT INTO Workspace(idUser, createdDate, name)
+						VALUES ($idUser, CURDATE(), 'Espacio de $username')");
+			if (!$defaultw){
+		 		throw new Exception("Fallo workspace ---".mysql_error());
+			} 
+			
+			$query = Cn::q("SELECT MAX(idWorkspace) as idWorkspace FROM Workspace");
+				while ($result = Cn::f($query)) {
+				$idWorkspace = $result['idWorkspace'];
+			}
+			$defaultn = Cn::q("INSERT INTO Notebook(idWorkspace, name, createdDate)
+						VALUES ($idWorkspace, 'Cuaderno de $username', CURDATE())");
+			if (!$defaultn){
+		 		throw new Exception("Fallo notebook ---".mysql_error());
+			}
+		} catch(Exception $e) {
+			/* if it fails, we want to record the error to another database*/
+		mysql_connect('localhost','root','123456789a') or die ("Error al conectar con el log de errores -> ". mysql_error());
+		mysql_select_db('duiterrors') or die ("Error al seleccionar el log de errores -> ". mysql_error());
+		$fecha = date("Y-m-d H:i:s");
+		$file = __FILE__;
+		/*we have to clean the string to insert it*/
+		$error = Cn::clean($e->getMessage());
+		echo $error;
+		$errorContent = $error;
+		mysql_query("INSERT INTO errorlog (dateError, contentError, archivo) VALUES ('$fecha','$errorContent', '$file')")
+		or die ("Error al insertar una linea en el log");
+		Header ("Location: error.html");
+		}
+		}
+		
+		/*send email */
 		$body = "Usuario: ".$username."\n";
 		$body .= "Contraseña: ".$pass1."\n";
 		$body .= "\n\n\n\nGracias por registrarte en Duit.\n\n\n\n";
 		$body .= "El administrador de Duit.";
 		$from = "From: Duit <duit@aesptux.com>\r\n"; 
-		mail($email,"Datos de acceso a Duit",$body,$from) or die ("Falló el envio del correo");
+		//mail($email,"Datos de acceso a Duit",$body,$from) or die ("Falló el envio del correo");
 		
 		?>
 	
@@ -112,7 +155,7 @@ if (!isset($error)) {
 	
 <?php
 		}	
-} 
+//} 
 	
 	
 getFooter();
