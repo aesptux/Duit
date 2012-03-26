@@ -499,7 +499,7 @@
 /*	--------------------------------------------------
 	Panels
 	-------------------------------------------------- */
-	div.panel {
+	div.panel, div.text {
 		padding: 20px 20px 2px 20px;
 		background: #efefef;
 		background: -moz-linear-gradient(top, #FFFFFF 0%, #F4F4F4 100%);
@@ -510,6 +510,7 @@
 		-moz-box-shadow: 0 2px 5px rgba(0,0,0,0.25);
 		margin: 0 0 20px 0;
 	}
+	
 
 /*	--------------------------------------------------
    	Nav Bar with Dropdowns
