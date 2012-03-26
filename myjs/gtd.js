@@ -141,11 +141,11 @@ $(document).ready(function(){
 	
 	// The Add New ToDo button:
 	
-	var timestamp=0;
+	//var timestamp=0;
 	$('#addButton').click(function(e){
 
-		// Only one todo per 5 seconds is allowed:
-		if((new Date()).getTime() - timestamp<5000) return false;
+		// Only one todo per second is allowed:
+		//if((new Date()).getTime() - timestamp<1000) return false;
 		
 		$.get("mylib/ajax.php",{'action':'new','text':'New Todo Item. Doubleclick to Edit.','rand':Math.random()},function(msg){
 
@@ -154,7 +154,7 @@ $(document).ready(function(){
 		});
 
 		// Updating the timestamp:
-		timestamp = (new Date()).getTime();
+		//timestamp = (new Date()).getTime();
 		
 		e.preventDefault();
 	});
