@@ -52,9 +52,14 @@
 	color: #555;
 	font-family: 'Josefin';
 }
-.actions {
+a.edit {
 	position:relative;
-	right:-600px;
+	left:615px;
+	top:-5px;
+}
+a.delete {
+	position:relative;
+	left:630px;
 	top:-5px;
 }
 
