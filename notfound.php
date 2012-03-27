@@ -30,7 +30,7 @@ getHeader("Duit | Oopsie!");
 			<div class="seven columns">
 				<h1 class="subtitlecontent" style="font-size: 88pt;">404 Not found! </h1>
 				<h3 class="subtitlecontent">No hemos podido procesar lo que has pedido</h3>
-				<a href="http://localhost/duit/index.php"><h2 class="subtitlecontent" style="text-align:center; font-size: 28pt; color:#11639D">Ir al inicio</h2></a>
+				<a href="index.php"><h2 class="subtitlecontent" style="text-align:center; font-size: 28pt; color:#11639D">Ir al inicio</h2></a>
 			</div>
 			<div class="five columns">
 			<img src="res/sad-cat.jpg" />
