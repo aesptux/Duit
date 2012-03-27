@@ -65,7 +65,11 @@ $(document).ready(function(){
 	if (event.keyCode == '27') 	//  Listening for a ESC key press to cancel edit:
 		$(this).find('a.discardChanges').click();
 	});
-	
+	// Listening for blur event. Discard changes
+	$('.todo').live('blur', function () {
+		$(this).find('a.discardChanges').click();
+	});
+		
 	// Listening for a click on a edit button
 	
 	$('.todo a.edit').live('click',function(){
@@ -85,7 +89,9 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		$('<input type="text">').val(container.text()).appendTo(container.empty());
+		$('<input type="text" id="editing">').val(container.text()).appendTo(container.empty());
+		//when editing, select the text
+		$('#editing').select();
 		
 		// Appending the save and cancel links:
 		container.append(
@@ -95,7 +101,7 @@ $(document).ready(function(){
 		);
 		
 	});
-	
+
 	// The cancel edit link:
 	// Removes whatever is the 'new' content
 	// Set origText as the value
@@ -127,12 +133,13 @@ $(document).ready(function(){
 		// Only one todo per second is allowed:
 		//if((new Date()).getTime() - timestamp<1000) return false;
 		
-		$.get("mylib/ajax.php",{'action':'new','text':'New Todo Item. Doubleclick to Edit.','rand':Math.random()},function(msg){
+		$.get("mylib/ajax.php",{'action':'new','text':'Nueva tarea.','rand':Math.random()},function(msg){
 
 			// Appending the new todo and fading it into view:
 			$(msg).hide().appendTo('.todoList').fadeIn();
+			
 		});
-
+		
 		// Updating the timestamp:
 		//timestamp = (new Date()).getTime();
 		
