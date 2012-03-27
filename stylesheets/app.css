@@ -62,4 +62,17 @@ a.delete {
 	left:630px;
 	top:-5px;
 }
-
+.todo input{
+	border:1px solid #CCCCCC;
+	color:#666666;
+	font-family: RobotoRegular;
+	font-size:15px;
+	padding:3px 4px;
+	width:300px;
+	-webkit-box-shadow: inset 1px 1px 3px #174460;
+	-moz-box-shadow: inset 1px 1px 3px #174460;
+	box-shadow: inset 1px 1px 3px #174460
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px}
+}
