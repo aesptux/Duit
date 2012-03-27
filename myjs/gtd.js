@@ -138,6 +138,8 @@ $(document).ready(function(){
 			// Appending the new todo and fading it into view:
 			$(msg).hide().appendTo('.todoList').fadeIn();
 			
+				//$(').find('a.edit').click();
+			
 		});
 		
 		// Updating the timestamp:
