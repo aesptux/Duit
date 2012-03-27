@@ -21,12 +21,6 @@
     	
 ?>
 <div class="row footer">
-				<div id="faq" class="reveal-modal">
-			    	<h2>Preguntas frecuentes</h2>
-			     	<p class="lead">¿Duit tiene algún límite?</p>
-			     	<p>No, de momento Duit no tiene establecido ningún límite.</p>
-			     	<a class="close-reveal-modal">&#215;</a>
-				</div>
 				<div id="acerca" class="reveal-modal">
 			    	<h2>Acerca de</h2>
 			     	<p class="subtitlecontent">Más información sobre Duit</p>
@@ -55,7 +49,7 @@
 			     	<p>Para contactar con el desarrollador:</p>
 			     	<a class="close-reveal-modal">&#215;</a>
 				</div>	
-				 <a href="#" class="spaces" data-reveal-id="faq" data-animation="fadeAndPop" data-animationspeed="300" data-closeonbackgroundclick="true" data-dismissmodalclass="close-reveal-modal">FAQ</a>
+				 <a href="faq.php" class="spaces">FAQ</a>
 				 <a href="#" class="spaces" data-reveal-id="acerca" data-animation="fadeAndPop" data-animationspeed="300" data-closeonbackgroundclick="true" data-dismissmodalclass="close-reveal-modal">Acerca de</a>
 				 <a href="#" class="spaces" data-reveal-id="contacto" data-animation="fadeAndPop" data-animationspeed="300" data-closeonbackgroundclick="true" data-dismissmodalclass="close-reveal-modal">Contacto</a>
 			</div>
