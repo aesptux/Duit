@@ -42,10 +42,10 @@ $idUser = $_SESSION['idUser'];
 		<?php  if(isset($_SESSION['email'])){
 			 
 $query = mysql_query("SELECT *
-FROM Task
-INNER JOIN Notebook ON Task.idNotebook = Notebook.idNotebook
-INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
-WHERE Workspace.idUser =".$idUser);
+					FROM Task
+					INNER JOIN Notebook ON Task.idNotebook = Notebook.idNotebook
+					INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
+					WHERE Workspace.idUser =".$idUser);
 
 $tasks = array();
 
@@ -67,9 +67,9 @@ while($row = mysql_fetch_assoc($query)){
 			<?php
 			
 			$allnotebooks = Cn::q("SELECT Notebook.name
-					FROM Notebook
-					INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
-					WHERE Workspace.idUser =".$idUser);
+								FROM Notebook
+								INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
+								WHERE Workspace.idUser =".$idUser);
 			while ($row = Cn::f($allnotebooks)) {
 				echo $row['name']."<br>";
 			}
@@ -86,7 +86,7 @@ while($row = mysql_fetch_assoc($query)){
 				</div>
 
 
-				<p>(quizas tener en cuenta su última visita para decirle que no es productivo)</p>
+				<!--<p>(quizas tener en cuenta su última visita para decirle que no es productivo)</p>-->
 				<div class="row">
 					<div class="twelve columns">
 						<dl class="nice tabs">
@@ -179,19 +179,7 @@ while($row = mysql_fetch_assoc($query)){
 						
 					</div></center>
 					
-					
-					
-					<!--<h3>Buttons</h3>
-	
-					<p><a href="#" class="small white button">Small Blue Button</a></p>
-					<p><a href="#" class="blue button">Medium Blue Button</a></p>
-					<p><a href="#" class="large blue button">Large Blue Button</a></p>
-	
-					<p><a href="#" class="nice radius small blue button">Nice Blue Button</a></p>
-					<p><a href="#" class="nice radius blue button">Nice Blue Button</a></p>
-					<p><a href="#" class="nice radius large blue button">Nice Blue Button</a></p>
-					-->
-					
+										
 					<!-- an easter egg. funny -->
 					<div id="free" class="reveal-modal">
 				    	<h2>¡It's free!</h2>

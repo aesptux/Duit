@@ -21,15 +21,17 @@
 var running = 1;
 var interval;
 var counter = document.getElementById('countdown');
-
+/* Pomodoro start function */
 function pomodoroStart() {
-var minutes = 25;
+var minutes = 25; //this is the standard
 var seconds = 00;
     interval = setInterval(function() {
-    
+    	/* when both variables == 0, pomodoro's over
+    	 * if not, subtract minutes and set seconds to 59 
+    	 */
 	    if(seconds == 0) {
     	    if(minutes == 0) {
-        	    counter.innerHTML = "countdown's over!";                    
+        	    counter.innerHTML = "Pomodoro terminado!";                    
                 clearInterval(interval);
                 return;
             } else {
@@ -37,6 +39,7 @@ var seconds = 00;
                 seconds = 59;
        		}
        }
+	    /* add the complementary 0 if needed*/
     if(seconds < 10) {
     	seconds = '0'+seconds;
     }
@@ -47,12 +50,14 @@ var seconds = 00;
 	//}
 /* Play sound when finished */	
     
-
 	
 	
 }
+
+/* Pomodoro stop function */
 function pomodoroStop() {
 	clearInterval(interval);
 	running = 0;
-	countdown.innerHTML = "25:00";
+	// haha nice trick
+	countdown.innerHTML = "25:00"; 
 }

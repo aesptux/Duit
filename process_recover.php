@@ -29,7 +29,12 @@ function clean($string) {
 	return mysql_real_escape_string($string);
 }
 define ("MAX_LENGTH", 20);
- 
+ /* generate a randompass
+  * With a max length of 20
+  * Chr will be a random number between 0 and 9
+  * On each iteration it will be appended to $randomStr
+  * Then $randomStr will be returned
+  */
 function randomPass() {
 	$randomStr = '';
 	for ($i=0; $i<MAX_LENGTH;$i++) {
@@ -61,7 +66,7 @@ if (!$res) {
 	} 
 		
 }
-
+/*if error */
 if (isset($error)) {
 ?>
 <div class="container">
@@ -81,7 +86,11 @@ if (isset($error)) {
 }
 if (!isset($error)) {
 
-
+	/*check if exist
+	 * If so generate randompass
+	 * Update password from DB
+	 * Send email
+	 */
 	$resultemail = Cn::q("SELECT email FROM User WHERE email='$email'");
 	$validateemail = Cn::f($resultemail);
 	if ($validateuser>0|$validateemail>0) {

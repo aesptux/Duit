@@ -1,9 +1,9 @@
 $(document).ready(function(){
 	/* The following code is executed once the DOM is loaded */
-
+	/* jQuery magic! */
 	$(".todoList").sortable({
 		axis		: 'y',				// Only vertical movements allowed
-		containment	: 'window',			// Constrained by the window
+		containment	: 'window',			// Constrained by the window. This may cause problems. If they arise, comment this line
 		update		: function(){		// The function is called after the todos are rearranged
 		
 			// The toArray method returns an array with the ids of the todos
@@ -17,7 +17,7 @@ $(document).ready(function(){
 			});
 			
 			// Saving with AJAX
-			$.get('mylib/ajax.php',{action:'rearrange',positions:arr});
+			//$.get('mylib/ajax.php',{action:'rearrange',positions:arr});
 		},
 		
 		/* Opera fix: */
@@ -32,27 +32,6 @@ $(document).ready(function(){
 	
 	var currentTODO;
 	
-	// Configuring the delete confirmation dialog
-	$("#dialog-confirm").dialog({
-		resizable: false,
-		height:130,
-		modal: true,
-		autoOpen:false,
-		buttons: {
-			'Delete item': function() {
-				
-				$.get("mylib/ajax.php",{"action":"delete","id":currentTODO.data('id')},function(msg){
-					currentTODO.fadeOut('fast');
-				})
-				
-				$(this).dialog('close');
-			},
-			Cancel: function() {
-				$(this).dialog('close');
-			}
-		}
-	});
-
 	// When a double click occurs, just simulate a click on the edit button:
 	$('.todo').live('dblclick',function(){
 		$(this).find('a.edit').click();
@@ -82,7 +61,7 @@ $(document).ready(function(){
 		
 	if (event.keyCode == '13') 	//  Listening for a enter key press to save task:
 		$(this).find('a.saveChanges').click();
-
+	// Problems with Chrome?
 	if (event.keyCode == '27') 	//  Listening for a ESC key press to cancel edit:
 		$(this).find('a.discardChanges').click();
 	});
@@ -118,7 +97,8 @@ $(document).ready(function(){
 	});
 	
 	// The cancel edit link:
-	
+	// Removes whatever is the 'new' content
+	// Set origText as the value
 	$('.todo a.discardChanges').live('click',function(){
 		currentTODO.find('.text')
 					.text(currentTODO.data('origText'))
@@ -139,7 +119,7 @@ $(document).ready(function(){
 	});
 	
 	
-	// The Add New ToDo button:
+	// Add task
 	
 	//var timestamp=0;
 	$('#addButton').click(function(e){

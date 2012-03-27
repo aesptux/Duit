@@ -27,20 +27,21 @@ class ToDo{
 	
 	private $data;
 	
-	/* The constructor */
+	/* The constructor 
+	 * A constructor is called automatically on each instance of the class*/
 	public function __construct($par){
 		if(is_array($par))
 			$this->data = $par;
 	}
 	
 	/*
-		This is where the magic happens. this method is called automatically on each instance of the class 
-	*/
+	 *	This is where the magic happens. this method is called automatically on each instance of the class 
+	 */
 		
 	public function __toString(){
 		
 		// The string we return is outputted by the echo statement
-		
+		/*Those are actual values from the database (we use database fields) */
 		return '
 			<li id="todo-'.$this->data['idTask'].'" class="todo">
 			
@@ -56,8 +57,8 @@ class ToDo{
 	
 	
 	/*
-		The following are static methods. These are available
-		directly, without the need of creating an object.
+	 *	The following are static methods. These are available
+	 *	directly, without the need of creating an object.
 	*/
 	
 	
@@ -69,8 +70,9 @@ class ToDo{
 		
 	public static function edit($id, $text){
 		session_start();
+		// clean text
 		$text = self::esc($text);
-		if(!$text) throw new Exception("Wrong update text!");
+		if(!$text) throw new Exception("Error con el texto de actualización");
 		
 		$query = Cn::q("UPDATE Task
 						SET content='".$text."'
@@ -78,12 +80,12 @@ class ToDo{
 					);
 		
 		if(!$query)
-			throw new Exception("Couldn't update item!".mysql_error());
+			throw new Exception("No se pudo actualizar la tarea".mysql_error());
 	}
 	
 	/*
-		The delete method. Takes the id of the ToDo item
-		and deletes it from the database.
+	 *	The delete method. Takes the id of the ToDo item
+	 *	and deletes it from the database.
 	*/
 	
 	public static function delete($id){
@@ -91,40 +93,15 @@ class ToDo{
 		mysql_query("DELETE FROM Task WHERE idTask=".$id);
 		
 		if(mysql_affected_rows($GLOBALS['link'])!=1)
-			throw new Exception("Couldn't delete item!".mysql_error());
+			throw new Exception("No se pudo borrar la tarea.".mysql_error());
 	}
 	
-	/*
-		The rearrange method is called when the ordering of
-		the todos is changed. Takes an array parameter, which
-		contains the ids of the todos in the new order.
-	*/
 	
-	/*public static function rearrange($key_value){
-		
-		$updateVals = array();
-		foreach($key_value as $k=>$v)
-		{
-			$strVals[] = 'WHEN '.(int)$v.' THEN '.((int)$k+1).PHP_EOL;
-		}
-		
-		if(!$strVals) throw new Exception("No data!");
-		
-		// We are using the CASE SQL operator to update the ToDo positions en masse:
-		
-		mysql_query("	UPDATE tz_todo SET position = CASE id
-						".join($strVals)."
-						ELSE position
-						END");
-		
-		if(mysql_error($GLOBALS['link']))
-			throw new Exception("Error updating positions!");
-	}*/
 	
 	/*
-		The createNew method takes only the text of the todo,
-		writes to the databse and outputs the new todo back to
-		the AJAX front-end.
+	 *	The createNew method takes only the text of the todo,
+	 *	writes to the databse and outputs the new todo back to
+	 *	the AJAX front-end.
 	*/
 	
 	public static function createNew($text){
@@ -132,15 +109,10 @@ class ToDo{
 		$text = self::esc($text);
 		if(!$text) throw new Exception("Wrong input data!");
 		
-		/*$posResult = mysql_query("SELECT MAX(position)+1 FROM tz_todo");
-		
-		if(mysql_num_rows($posResult))
-			list($position) = mysql_fetch_array($posResult);
-
-		if(!$position) $position = 1;*/
 		$fecha=date("Y-m-d H:i:s");
 		$author = $_SESSION['user'];
 		$idUser = $_SESSION['idUser'];
+		/* This is a temporary fix. Only the default notebook works */
 		$query = mysql_query("SELECT Notebook.idNotebook as idNotebook
 			FROM Notebook
 			INNER JOIN Workspace ON Notebook.idWorkspace = Workspace.idWorkspace
@@ -150,6 +122,7 @@ class ToDo{
 		}
 		mysql_query("INSERT INTO Task(idNotebook, content,author, createdDate) VALUES ($idNotebook, '$text', '$author','$fecha')");
 		echo $text; echo mysql_insert_id($GLOBALS['link']);
+		/* It keeps throwing the exception for a still unknown reason. If commented, it works */
 		/*if(mysql_affected_rows($GLOBALS['link'])!=1)
 			throw new Exception("Error inserting TODO!".mysql_error());*/
 		
@@ -158,6 +131,7 @@ class ToDo{
 		while ($result = mysql_fetch_assoc($query)) {
 			$lastid = $result['idTask'];
 		}
+		/*DB values, that will be outputted automatically using __toString()*/
 		echo (new ToDo(array(
 			'idTask'	=> $lastid,
 			'content'	=> $text
@@ -167,7 +141,8 @@ class ToDo{
 	}
 	
 	/*
-		A helper method to sanitize a string:
+	 *	A helper method to sanitize a string:
+	 *  It's a healer. Maybe a Tauren
 	*/
 	
 	public static function esc($str){

@@ -21,18 +21,18 @@
  require "gtd.php";
  Cn::conn();
  Cn::selectdb();
+ 
+ /* this file receives parameters from gtd.js */
+ /*id field received from gtd.js */
 $id = (int)$_GET['id'];
 
 try{
-
+	/* action received from gtd.js
+	 * Then, with this switch do certain calls to the actual function*/
 	switch($_GET['action'])
 	{
 		case 'delete':
 			ToDo::delete($id);
-			break;
-			
-		case 'rearrange':
-			ToDo::rearrange($_GET['positions']);
 			break;
 			
 		case 'edit':
@@ -49,6 +49,6 @@ catch(Exception $e){
 	echo $e->getMessage();
 	die("0");
 }
-
+// this is good
 echo "1";
 ?>

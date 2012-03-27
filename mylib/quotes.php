@@ -20,11 +20,7 @@
  */
 /*get random greetings. Some greetings found on meneame.net source code */
 function getRandomGreeting() {
-	
-	/*$result = Cn::q("SELECT COUNT(phrase) FROM Greetings");
-	while ($row = Cn::f($result)) {
-		$total = $row[0];
-	}*/
+
 	/* create two arrays, on with greetings, other with language */
 	$greetingsarray = array();
 	$greetingsarray[0] = 'bienvenid@';
@@ -72,11 +68,7 @@ function getRandomGreeting() {
 	$random = rand(0, count($greetingsarray)-1);
 	//echo "$random";
 	/* select random Greeting */
-	/*$result = Cn::q("SELECT phrase, language FROM Greetings WHERE idGreetings = $random");
-	while ($row = Cn::f($result)) {
-		$quote = $row[0];
-		$language = $row[1];
-	}*/
+
 	/* now, as we must return two variables, we push them into an array */
 	$greeting = $greetingsarray[$random];
 	$language = $languagearray[$random];
@@ -89,12 +81,7 @@ function getRandomGreeting() {
  }
 
 function getRandomQuote() {
-	/* first, get total number of quotes */
-	/*$result = Cn::q("SELECT COUNT(quote) FROM Quote");
-	while ($row = Cn::f($result)) {
-		$total = $row[0];
-	}*/
-	
+
 	/* create two arrays, on with quotes, other with authors */
 	$quotesarray = array();
 	$quotesarray[0] = 'El hombre nada puede aprender sino en virtud de lo que sabe.';
@@ -137,12 +124,6 @@ function getRandomQuote() {
 	/*generate random number */
 	$random = rand(0, count($quotesarray)-1);
 	
-	/* select random Quote */
-	/*$result = Cn::q("SELECT quote,author FROM Quote WHERE idquote = $random");
-	while ($row = Cn::f($result)) {
-		$quote = $row[0];
-		$author = $row[1];
-	}*/
 	/* now, as we must return two variables, we push them into an array */
 	$quote = $quotesarray[$random];
 	$author = $authorarray[$random];

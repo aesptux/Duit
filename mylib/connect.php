@@ -23,6 +23,7 @@ define('DBSERVER', 'localhost'); // database server
 define('DBPASS', '123456789a'); // database password
 	
 class Cn {
+	
 	/* If there is die, there is no exception */
 	public $link; // this is the usual link.
 	/* CONNECT */

@@ -38,7 +38,7 @@ if (empty($email) || empty($pass1)) {
 	$error .= "No puedes dejar ningún campo vacío<br>";
 } 
 
-
+/* if error, show error */
 if (isset($error)) {
 ?>
 <div class="container">
@@ -58,13 +58,14 @@ if (isset($error)) {
 }
 if (!isset($error)) {
 
-
-	
+	/*retrieve data from db */	
 	$result = Cn::q("SELECT idUser,username,email,password FROM User WHERE email='$email'", MYSQL_ASSOC);
 	$validate = Cn::f($result);
 	
 
-	/* if we have more than one row, user entered wrong data */
+	/* if we have more than one row, user entered wrong data 
+	 * If not, user entered inexistent data
+	 */
 	if ($validate<=0) {
 		$errorbd .= "Por favor revisa los datos";
 		?>
@@ -82,6 +83,7 @@ if (!isset($error)) {
 		</div>
 <?php
 	} else {
+		/*The user may not remember password. Ask to recover */
 		/* checked. Use SHA1 on password */
 		$sha1pass = sha1($pass1);
 		$ipuser = $_SERVER['REMOTE_ADDR'];

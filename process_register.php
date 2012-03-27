@@ -21,6 +21,7 @@ include 'mylib/footer.php';
 include 'mylib/header.php';
 getHeader("Duit | Registro");
 /* clean fields to avoid madness ! */
+/* Change this on refactor */
 function clean($string) {
 	if (get_magic_quotes_gpc())
 		$string = stripslashes($string);
@@ -28,7 +29,7 @@ function clean($string) {
 	$string = trim($string);
 	return mysql_real_escape_string($string);
 } 
- 
+ /* values from form*/
 $username = clean($_POST['username']);
 $email = clean($_POST['useremail']);
 $pass1 = clean($_POST['pass1']);
@@ -56,7 +57,7 @@ if ($pass1 != $pass2 || strlen($pass1) < 8) {
 	$error .= "Las contraseñas deben coincidir y ser de un mínimo de 8 caracteres<br>";
 }
 
-
+/* if error is set, we show error page */
 if (isset($error)) {
 ?>
 <div class="container">
@@ -74,7 +75,9 @@ if (isset($error)) {
 </div>
 <?php	
 }
+/*if error not set, process register */
 if (!isset($error)) {
+	/* check again whether username or email exist on db */
 	$resultuser = Cn::q("SELECT username FROM User WHERE username = '$username'");
 	$validateuser = Cn::f($resultuser); 
 
@@ -94,10 +97,9 @@ if (!isset($error)) {
 		while ($result = Cn::f($query)) {
 			$idUser = $result['idUser'];
 		}
-		//echo "idUser->".$idUser;
-		
-		//echo "<br>idWorkspace->".$idWorkspace;
-		//exit();
+		/* we create default workspace and default notebook
+		 * Control errors with exceptions 
+		 */
 		try {
 			
 			$defaultw = Cn::q("INSERT INTO Workspace(idUser, createdDate, name)

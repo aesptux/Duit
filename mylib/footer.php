@@ -63,13 +63,6 @@
 					
 		
 
-	
-	<!-- container -->
-
-
-
-
-	<!-- Included JS Files -->
 
 	
 </body>

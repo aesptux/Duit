@@ -21,7 +21,10 @@
 function getHeader($title) {
 	
 	include 'mylib/connect.php';
-	
+	/* Try connection to DB and DB Selection
+	 * If we get some error, throw an exception
+	 * and log it into a table
+	 */
 	try {
 		$c = Cn::conn();
 		//echo $c;
