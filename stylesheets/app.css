@@ -52,5 +52,9 @@
 	color: #555;
 	font-family: 'Josefin';
 }
-
+.actions {
+	position:relative;
+	right:-600px;
+	top:-5px;
+}
 
