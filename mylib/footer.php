@@ -17,6 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Duit.  If not, see <http://www.gnu.org/licenses/>.
  */
+ include 'mylib/contactform.php';
     function getFooter() {
     	
 ?>
@@ -47,6 +48,7 @@
 				<div id="contacto" class="reveal-modal">
 			    	<h2>Contacto</h2>
 			     	<p>Para contactar con el desarrollador:</p>
+			     	<?php checkContactData(); putForm(); ?>
 			     	<a class="close-reveal-modal">&#215;</a>
 				</div>	
 				 <a href="faq.php" class="spaces">FAQ</a>
