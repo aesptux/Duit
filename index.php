@@ -34,7 +34,16 @@ $idUser = $_SESSION['idUser'];
 
 
 ?>
-
+<script>
+$(document).ready(function() {
+$("#quote").hide();	 
+$('#showquote').click(function() {
+      $('#quote').fadeIn('slow', function() {
+        // Animation complete
+      });
+    });
+  });
+</script>
 
 	<!-- container -->
 	<div class="container">
@@ -61,7 +70,12 @@ while($row = mysql_fetch_assoc($query)){
 			<div class="three columns">
 			<a href="logout.php">Salir</a>
 			<!-- greetings part. get a random greeting. Function call is on top-->
-			<h5>¡<?php echo "<span title='Duit te saluda en $ql[1]'> $ql[0] "; echo $_SESSION['user']; ?> !</h5>				
+			<h5>¡<?php echo "<span title='Duit te saluda en $ql[1]'> $ql[0] "; echo $_SESSION['user']; ?> !</h5>
+			<div id="showquote"><p>Haz click aquí para mostrar tu frase aleatoria</p></div>
+			<div id="quote"><p><?php echo $qa[0];   ?></p>
+					<p><b><?php echo $qa[1];   ?></b></p>	
+			</div>
+						
 				<h4>Notebooks</h4>
 				<p>Listado de notebooks aqui</p>
 			<?php
@@ -78,12 +92,7 @@ while($row = mysql_fetch_assoc($query)){
 				
 			</div>
 			<div class="nine columns">
-				<div class="alert-box [success]">
-					<!-- Show random quote. Cool stuff -->
-					<h4><?php echo $qa[0];   ?></h4>
-					<p><b><?php echo $qa[1];   ?></b></p>
-					<a href="" class="close">&times;</a>
-				</div>
+				
 
 
 				<!--<p>(quizas tener en cuenta su última visita para decirle que no es productivo)</p>-->

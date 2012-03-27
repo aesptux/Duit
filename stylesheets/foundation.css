@@ -440,7 +440,8 @@
 	
 	.alert-box a.close { color: #000; position: absolute; right: 4px; top: 0; font-size: 18px; opacity: 0.2; padding: 4px; }
 	.alert-box a.close:hover,.alert-box a.close:focus { opacity: 0.4; }
-
+/* quote alet */
+	.alert-box.quote { height: 20px; background-color: #7fae00; color: #fff; text-shadow: 0 -1px rgba(0,0,0,0.3); }
 
 /*    --------------------------------------------------
     Tabs
