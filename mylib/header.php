@@ -108,7 +108,7 @@ function getHeader($title) {
 	<script src="myjs/pomodoro.js"></script>
 	<script src="myjs/gtd.js"></script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery-ui-1.8.18.custom.min.js"></script>
 
 </head>
 <body>
