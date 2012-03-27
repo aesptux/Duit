@@ -38,7 +38,7 @@
 				<label>Nombre</label>
 				<input id="username" class="oversize input-text" type="text" name="username" placeholder="Introduce tu nombre" />	
 				<label>Email</label>
-				<input class="oversize input-text" type="text" name="useremail" id="email" placeholder="Introduce tu email" />
+				<input class="oversize input-text" type="text" name="email" id="email" placeholder="Introduce tu email" />
 				<label>Motivo de contacto</label>
 				<input id="motivo" class="oversize input-text" type="text" name="motivo" placeholder="Introduce un motivo" />
 				<label>Comentarios</label>
