@@ -48,8 +48,8 @@ class ToDo{
 				<div class="text">'.$this->data['content'].'</div>
 				
 				<div class="actions">
-					<a href="#" class="edit">Edit</a>
-					<a href="#" class="delete">Delete</a>
+					<a href="#" class="edit">Editar</a>
+					<a href="#" class="delete">Borrar</a>
 				</div>
 				
 			</li>';
