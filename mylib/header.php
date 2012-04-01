@@ -20,6 +20,9 @@
  */
 function getHeader($title) {
 	
+	session_name('duitlogin');
+	//session_cache_expire(1);
+	//session_set_cookie_params(1);
 	include 'mylib/connect.php';
 	/* Try connection to DB and DB Selection
 	 * If we get some error, throw an exception
@@ -61,7 +64,16 @@ function getHeader($title) {
 	}
 	echo "El valor devuelto es -> $devuelto";*/
 	/* geolocalization */
+	session_set_cookie_params(1209600);
 	session_start();
+	/*if (time() - $_SESSION['created'] > 30) {
+		echo "Sesión expirada";
+		session_destroy();
+		session_unset();
+		//header ("Location: index.php");
+		session_start();
+	}*/ 
+	
 
 	
 ?>

@@ -112,6 +112,7 @@ if (!isset($error)) {
 					$_SESSION['user'] = $validate['username'];
 					$_SESSION['email'] = $validate['email'];
 					$_SESSION['idUser'] = $validate['idUser'];
+					$_SESSION['created'] = time();
 					
 					/* and update dateLastAccess field */
 					$user = $validate['username'];
@@ -130,6 +131,8 @@ if (!isset($error)) {
 					</div>
 <?php
 				//sleep(10);
+					//setcookie('userlogged',$validate['username'],time()+30);
+					
 					Header ("Location: index.php");
 				}
 		
