@@ -17,10 +17,10 @@
  * You should have received a copy of the GNU General Public License
  * along with Duit.  If not, see <http://www.gnu.org/licenses/>.
  */
-define('DBUSER', 'root'); // database user
-define('DBNAME', 'duitdb'); // database name
-define('DBSERVER', 'localhost'); // database server
-define('DBPASS', '123456789a'); // database password
+define('DBUSER', ''); // database user
+define('DBNAME', ''); // database name
+define('DBSERVER', ''); // database server
+define('DBPASS', ''); // database password
 	
 class Cn {
 	
